@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo apt -y install git gcc curl make libxml2-utils flex m4 bison
+sudo apt -y install openjdk-8-jdk lib32stdc++6 libelf-dev
+sudo apt -y install libssl-dev python-enum34 python-mako syslinux-utils libncurses-dev
+
+make mrproper
