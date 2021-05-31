@@ -2,6 +2,7 @@
 /* Copyright (c) 2021 Mellanox Technologies. */
 
 #include <net/fib_notifier.h>
+#include <net/nexthop.h>
 #include "tc_tun_encap.h"
 #include "en_tc.h"
 #include "tc_tun.h"
@@ -1504,7 +1505,7 @@ mlx5e_init_fib_work_ipv4(struct mlx5e_priv *priv,
 
 	fen_info = container_of(info, struct fib_entry_notifier_info, info);
 	fib_dev = fib_info_nh(fen_info->fi, 0)->fib_nh_dev;
-	if (fib_dev->netdev_ops != &mlx5e_netdev_ops ||
+	if (!fib_dev || fib_dev->netdev_ops != &mlx5e_netdev_ops ||
 	    fen_info->dst_len != 32)
 		return NULL;
 
